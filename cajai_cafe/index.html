@@ -1,381 +1,198 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cajai Café | Guía y presentación</title>
-	<meta name="description" content="Cajai Café: guía para preparar café en casa inspirada en Junín–Chanchamayo. Recetas, proporciones, proceso del café y contacto.">
-	<meta name="theme-color" content="#2e5e2a">
-	<style>
-		:root{
-			--verde-oscuro:#2e5e2a;
-			--verde:#3e7a39;
-			--verde-claro:#a3c48d;
-			--cafe:#6f4e37;
-			--cafe-oscuro:#4b3326;
-			--crema:#f5f1e9;
-			--humo:#f2f5f1;
-			--tinta:#1e1e1e;
-			--muted:#66706a;
-			--radius:14px;
-			--shadow:0 6px 24px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.05);
-		}
-		*{box-sizing:border-box}
-		html,body{margin:0;padding:0;background:linear-gradient(180deg,#eef5ef, #f8f7f4 60%);color:var(--tinta);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";line-height:1.5}
-		a{color:var(--verde-oscuro);text-decoration:none}
-		header{
-			position:sticky;top:0;z-index:50;
-			background:rgba(248,247,244,.85);
-			backdrop-filter:saturate(150%) blur(8px);
-			border-bottom:1px solid #e8ece7;
-		}
-		.nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 16px}
-		.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--verde-oscuro)}
-		.brand-badge{width:30px;height:30px;border-radius:8px;background:conic-gradient(from 180deg at 50% 60%, var(--verde) 0 45deg, var(--verde-oscuro) 45deg 180deg, var(--cafe) 180deg 360deg);box-shadow:inset 0 0 0 2px #dfe6dd}
-		nav{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
-		nav a{padding:8px 12px;border-radius:10px}
-		nav a:hover{background:#e9efe6}
-		main{max-width:1100px;margin:0 auto;padding:8px 16px 64px}
-		.hero{
-			margin:22px 0 16px;border-radius:22px;
-			color:#0f2610;overflow:hidden;position:relative;
-			background:linear-gradient(160deg,#dfeee0, #f1f6e8 45%, #f7efe6);
-			box-shadow:var(--shadow);
-		}
-		.hero-inner{padding:34px 22px 28px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-		@media (max-width:860px){.hero-inner{grid-template-columns:1fr}}
-		.hero h1{font-size:clamp(28px,4.8vw,44px);margin:0 0 8px}
-		.hero p{margin:.25rem 0 1rem;color:#294729}
-		.tag{display:inline-block;background:#e4efdf;color:#294729;padding:6px 10px;border-radius:999px;font-weight:600;font-size:12px;letter-spacing:.2px;border:1px solid #d6e5d0}
-		.figure{
-			position:relative;min-height:220px;border-left:1px dashed #dfe9d8;padding-left:16px
-		}
-		.montanas{
-			position:absolute;inset:0;opacity:.65;
-			background:
-				radial-gradient(120% 80% at 10% 100%, #a2c9a4 0, transparent 60%),
-				radial-gradient(80% 60% at 60% 100%, #6fa574 0, transparent 60%),
-				radial-gradient(80% 60% at 95% 100%, #527f53 0, transparent 60%);
-			mask:linear-gradient(#000, transparent 85%);
-		}
-		.cafe-vaso{
-			position:absolute;bottom:12px;right:18px;width:120px;height:150px;border-radius:14px 14px 8px 8px;background:linear-gradient(#fff, #f7efe6);box-shadow:0 10px 20px rgba(0,0,0,.1);
-		}
-		.cafe-vaso::before{
-			content:"";position:absolute;left:12px;right:12px;bottom:40px;height:60px;border-radius:8px;background:linear-gradient(180deg, #7a573e, #4d3527);
-		}
-		.cafe-vaso::after{
-			content:"☕";position:absolute;top:-28px;right:6px;font-size:28px;transform:rotate(-12deg)
-		}
-		.grid{display:grid;gap:16px}
-		.cards{grid-template-columns:repeat(12,1fr)}
-		.card{grid-column:span 12;background:#fff;border:1px solid #edf0ec;border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
-		@media(min-width:720px){.span-6{grid-column:span 6}.span-4{grid-column:span 4}.span-8{grid-column:span 8}}
-		h2{margin:18px 0 8px;font-size:clamp(20px,3.2vw,28px);color:var(--cafe-oscuro)}
-		h3{margin:12px 0 6px;color:var(--cafe)}
-		.lead{color:var(--muted)}
-		details{border:1px solid #e8ece7;border-radius:12px;background:#fbfdfa;padding:10px}
-		details+details{margin-top:8px}
-		summary{cursor:pointer;font-weight:600;color:#2f442f}
-		.badge{display:inline-block;padding:2px 8px;border-radius:10px;background:#eef4ec;border:1px solid #dfe9d8;color:#2f442f;font-size:12px;margin-left:6px}
-		.small{font-size:12px;color:#6a6a6a}
-		.kpi{display:flex;gap:10px;flex-wrap:wrap}
-		.kpi div{background:#f7faf6;border:1px solid #e8efe6;border-radius:10px;padding:8px 10px}
-		label{display:block;font-weight:600;margin:8px 0 6px}
-		input,select,button,textarea{
-			width:100%;padding:10px 12px;border-radius:10px;border:1px solid #dfe6dd;background:#fff;font:inherit
-		}
-		button{background:linear-gradient(#3f7f3a,#2e5e2a);color:#fff;border:none;cursor:pointer}
-		button:hover{filter:brightness(1.05)}
-		.help{font-size:12px;color:#66706a}
-		.timeline{display:grid;gap:12px}
-		.step{display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #edf0ec;border-radius:12px;padding:12px}
-		.step i{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:#eef4ec;color:#2e5e2a}
-		footer{padding:32px 16px;color:#5e6a5f}
-		hr{border:none;border-top:1px solid #e8ece7;margin:18px 0}
-	</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cajai Café | Guía sencilla para preparar café en casa</title>
+    <meta name="description" content="Cajai Café: orígenes, guía para principiantes, paneles por cafetera o bebida, recetas y contacto. Inspirado en Junín–Chanchamayo, Perú." />
+    <meta name="theme-color" content="#2e5e2a" />
+    <link rel="preload" href="./assets/css/styles.css" as="style" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 <body>
-<header>
-	<div class="nav">
-		<div class="brand">
-			<div class="brand-badge" aria-hidden="true"></div>
-			<span>Cajai Café</span>
-		</div>
-		<nav>
-			<a href="#inicio">Inicio</a>
-			<a href="#historia">Historia</a>
-			<a href="#guia">Guía</a>
-			<a href="#recetas">Recetas</a>
-			<a href="#calculadora">Calculadora</a>
-			<a href="#proceso">Proceso</a>
-			<a href="#contacto">Contacto</a>
-		</nav>
-	</div>
+<header class="site-header">
+    <div class="nav container">
+        <a class="brand" href="#inicio" aria-label="Cajai Café">
+            <span class="brand-badge" aria-hidden="true"></span>
+            <span class="brand-name">Cajai Café</span>
+        </a>
+        <nav class="topnav" id="topnav" aria-label="Navegación principal">
+            <a href="#origenes">Orígenes</a>
+            <a href="#elige">Elige tu método</a>
+            <a href="#recetas">Bebidas</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <button id="menuBtn" class="icon-btn" aria-label="Abrir menú" title="Menú">☰</button>
+    </div>
 </header>
 
 <main id="inicio">
-	<section class="hero">
-		<div class="hero-inner">
-			<div>
-				<span class="tag">Junín – Chanchamayo • Perú</span>
-				<h1>Café con alma verde, origen andino</h1>
-				<p class="lead">Una guía simple y amigable para preparar café molido en casa. Métodos, proporciones, recetas y el gran proceso del café: de la planta a tu taza.</p>
-				<div class="kpi">
-					<div>Altitud ref.: 800–1,600 m.s.n.m.</div>
-					<div>Perfil: dulce, cítrico, floral</div>
-					<div>Tueste: medio recomendado</div>
-				</div>
-			</div>
-			<div class="figure" aria-hidden="true">
-				<div class="montanas"></div>
-				<div class="cafe-vaso"></div>
-			</div>
-		</div>
-	</section>
+    <section class="hero container reveal">
+        <div class="hero-inner">
+            <div>
+                <span class="tag">Junín – Chanchamayo • Perú</span>
+                <h1>Café con alma verde, origen andino</h1>
+                <p class="lead">Aprende a preparar café fácil, sin experiencia previa. Elige tu cafetera o la bebida que quieres tomar y te guiamos paso a paso.</p>
+                <div class="cta">
+                    <a class="btn primary" href="#elige">Empezar ahora</a>
+                    <a class="btn ghost" href="#origenes">Conoce nuestros orígenes</a>
+                </div>
+            </div>
+            <div class="hero-figure" aria-hidden="true">
+                <div class="montanas"></div>
+                <div class="cafe-vaso"></div>
+            </div>
+        </div>
+    </section>
 
-	<section id="historia" class="grid cards">
-		<div class="card span-8">
-			<h2>De Chanchamayo a tu mesa</h2>
-			<p>
-				El valle de Chanchamayo, en la región Junín, es cuna de cafés con gran carácter. Suelos fértiles, microclimas y tradición agrícola dan origen a granos que brillan en taza.
-			</p>
-			<ul>
-				<li>Productores familiares y cooperativas con enfoque sostenible.</li>
-				<li>Variedades típicas: Caturra, Typica, Bourbon y Catimor.</li>
-				<li>Perfiles con acidez cítrica, dulzor a panela y notas florales.</li>
-			</ul>
-		</div>
-		<div class="card span-4">
-			<h3>Consejo rápido</h3>
-			<p class="small">Muele justo antes de preparar y usa agua filtrada a 90–96 °C. Deja reposar 30–45 s tras hervir.</p>
-			<p class="small">Proporción base filtrado: 1:15 (1 g café por 15 g de agua).</p>
-		</div>
-	</section>
+    <section id="origenes" class="container grid cards reveal">
+        <div class="card span-7">
+            <h2>Orígenes de Cajai Café</h2>
+            <p class="muted">Ejemplo editable — reemplaza por tu historia.</p>
+            <p>
+                Cajai Café nace en el valle de <strong>Chanchamayo (Junín, Perú)</strong>, donde la selva alta abraza los cafetales. Crecimos entre productores que cuidan el suelo, la sombra y la cosecha selectiva de cerezas maduras.
+            </p>
+            <p>
+                Trabajamos con variedades <em>Caturra, Typica y Bourbon</em> en altitudes entre <strong>800–1,600 m.s.n.m.</strong>. Buscamos un perfil <strong>dulce y cítrico con toques florales</strong>. Tostamos en punto medio para resaltar equilibrio y dulzor natural.
+            </p>
+            <p>
+                Nuestro propósito es acercar el café de especialidad a todos: <strong>guías claras, pasos simples y resultados constantes</strong>. De la planta a tu taza, con respeto por el origen.
+            </p>
+        </div>
+        <div class="card span-5">
+            <h3>Qué esperar en taza</h3>
+            <ul class="bullets">
+                <li>Dulzor a panela, cítricos brillantes, florales ligeros.</li>
+                <li>Cuerpo medio con final limpio.</li>
+                <li>Tueste medio recomendado para métodos de filtro.</li>
+            </ul>
+            <div class="kpi">
+                <div>Altitud: 800–1,600 m</div>
+                <div>Proceso: lavado / honey</div>
+                <div>Tueste: medio</div>
+            </div>
+        </div>
+    </section>
 
-	<section id="guia" class="grid cards">
-		<div class="card span-12">
-			<h2>Guía según tu cafetera</h2>
-			<details open>
-				<summary>V60 / Pour-over <span class="badge">Filtrado</span></summary>
-				<ol>
-					<li>Molido medio-fino (sal fina).</li>
-					<li>Enjuaga el filtro con agua caliente.</li>
-					<li>Proporción 1:15. Ej.: 20 g café → 300 g agua.</li>
-					<li>Bloom 30–40 s con 2× café en agua, luego vierte en espiral.</li>
-					<li>Tiempo objetivo: 2:30–3:00 min.</li>
-				</ol>
-			</details>
-			<details>
-				<summary>Prensa francesa <span class="badge">Inmersión</span></summary>
-				<ol>
-					<li>Molido grueso (sal kosher).</li>
-					<li>Proporción 1:15 a 1:16. Ej.: 30 g → 450–480 g agua.</li>
-					<li>Remueve, tapa sin bajar el émbolo. Infunde 4 min.</li>
-					<li>Rompe costra, retira espuma y presiona suave.</li>
-				</ol>
-			</details>
-			<details>
-				<summary>Moka italiana <span class="badge">Presión</span></summary>
-				<ol>
-					<li>Molido medio (más fino que filtrado, más grueso que espresso).</li>
-					<li>Agua caliente hasta la válvula. No compactes el café.</li>
-					<li>Fuego bajo. Retira al primer borboteo para evitar amargor.</li>
-				</ol>
-			</details>
-			<details>
-				<summary>Espresso <span class="badge">9 bar</span></summary>
-				<ol>
-					<li>Molido fino. 18 g en doble canasta como referencia.</li>
-					<li>Distribuye y nivela. Tamping firme y nivelado.</li>
-					<li>Objetivo: 36–40 g en 25–30 s (1:2).</li>
-				</ol>
-			</details>
-		</div>
-	</section>
+    <section id="elige" class="container reveal">
+        <h2>Elige tu método o bebida</h2>
+        <p class="lead">Selecciona lo que tienes o quieres tomar. Verás pasos, proporciones y tiempos explicados de forma sencilla.</p>
 
-	<section id="recetas" class="grid cards">
-		<div class="card span-4">
-			<h3>Espresso</h3>
-			<p class="small">18 g → 36–40 g en 25–30 s. Tueste medio para equilibrio.</p>
-		</div>
-		<div class="card span-4">
-			<h3>Americano</h3>
-			<p class="small">1 espresso + 120–180 ml de agua caliente. Primero el agua, luego el espresso.</p>
-		</div>
-		<div class="card span-4">
-			<h3>Latte</h3>
-			<p class="small">1 espresso + 180–240 ml de leche vaporizada. Textura sedosa, 55–60 °C.</p>
-		</div>
-	</section>
+        <!-- Conmutador de grupo: Cafetera / Bebida -->
+        <div class="segmented" role="tablist" aria-label="Selector de guía">
+            <button class="seg-btn active" role="tab" aria-selected="true" aria-controls="panel-metodos" id="tab-metodos">Cafetera</button>
+            <button class="seg-btn" role="tab" aria-selected="false" aria-controls="panel-bebidas" id="tab-bebidas">Bebida</button>
+        </div>
 
-	<section id="calculadora" class="grid cards">
-		<div class="card span-12">
-			<h2>Calculadora de proporciones</h2>
-			<p class="lead">Elige método, intensidad y define por tazas o gramos. Recibirás agua, tiempo y molido sugerido.</p>
-			<div class="grid" style="grid-template-columns:repeat(12,1fr);gap:16px">
-				<div class="span-4">
-					<label for="metodo">Método</label>
-					<select id="metodo">
-						<option value="v60">V60 / Filtrado</option>
-						<option value="prensa">Prensa francesa</option>
-						<option value="moka">Moka</option>
-						<option value="espresso">Espresso</option>
-					</select>
-				</div>
-				<div class="span-4">
-					<label for="intensidad">Intensidad</label>
-					<select id="intensidad">
-						<option value="suave">Suave</option>
-						<option value="media" selected>Media</option>
-						<option value="fuerte">Fuerte</option>
-					</select>
-				</div>
-				<div class="span-4">
-					<label for="unidad">Calcular por</label>
-					<select id="unidad">
-						<option value="tazas">Tazas</option>
-						<option value="gramos">Gramos de café</option>
-					</select>
-				</div>
+        <!-- Panel: Métodos (cafeteras) -->
+        <section id="panel-metodos" class="panel show" role="tabpanel" aria-labelledby="tab-metodos">
+            <div id="cards-metodos" class="grid cards"></div>
+            <article id="detalle-metodo" class="card mt reveal-sm" aria-live="polite"></article>
+        </section>
 
-				<div class="span-4">
-					<label for="valor">Cantidad</label>
-					<input id="valor" type="number" min="1" step="1" value="2" />
-					<div class="help" id="ayudaValor">Tazas (≈200 ml c/u)</div>
-				</div>
-				<div class="span-8">
-					<label for="agua">Agua total (g/ml)</label>
-					<input id="agua" type="number" readonly />
-				</div>
+        <!-- Panel: Bebidas -->
+        <section id="panel-bebidas" class="panel" role="tabpanel" aria-labelledby="tab-bebidas" hidden>
+            <div id="cards-bebidas" class="grid cards"></div>
+            <article id="detalle-bebida" class="card mt reveal-sm" aria-live="polite"></article>
+        </section>
 
-				<div class="span-4">
-					<label for="cafe">Café (g)</label>
-					<input id="cafe" type="number" readonly />
-				</div>
-				<div class="span-4">
-					<label for="tiempo">Tiempo objetivo</label>
-					<input id="tiempo" type="text" readonly />
-				</div>
-				<div class="span-4">
-					<label for="molido">Molido sugerido</label>
-					<input id="molido" type="text" readonly />
-				</div>
-			</div>
-			<hr>
-			<p class="small">Notas: 1 taza ≈ 200 ml. Temperatura 90–96 °C (espresso: según máquina). Ajusta molienda antes que proporción para corregir tiempo/sabor.</p>
-		</div>
-	</section>
+        <!-- Asistente rápido para principiantes -->
+        <div class="card mt">
+            <h3>Asistente para principiantes</h3>
+            <p class="muted">Indica cuántas tazas quieres (aprox. 200 ml cada una). Te damos café, agua, tiempo y molido sugerido.</p>
+            <div class="grid" style="grid-template-columns:repeat(12,1fr);gap:12px">
+                <div class="span-4">
+                    <label for="asist-metodo">Cafetera</label>
+                    <select id="asist-metodo"></select>
+                </div>
+                <div class="span-4">
+                    <label for="asist-intensidad">Intensidad</label>
+                    <select id="asist-intensidad">
+                        <option value="suave">Suave</option>
+                        <option value="media" selected>Media</option>
+                        <option value="fuerte">Fuerte</option>
+                    </select>
+                </div>
+                <div class="span-4">
+                    <label for="asist-tazas">Tazas</label>
+                    <input id="asist-tazas" type="number" min="1" step="1" value="2" />
+                    <div class="help">1 taza ≈ 200 ml</div>
+                </div>
 
-	<section id="proceso" class="grid cards">
-		<div class="card span-12">
-			<h2>El gran proceso del café</h2>
-			<div class="timeline">
-				<div class="step"><i>🌱</i><div><strong>Cultivo</strong><br><span class="small">Altitud, sombra y suelos de selva alta favorecen complejidad.</span></div></div>
-				<div class="step"><i>🍒</i><div><strong>Cosecha</strong><br><span class="small">Selección de cerezas maduras para mayor dulzor.</span></div></div>
-				<div class="step"><i>💧</i><div><strong>Beneficiado</strong><br><span class="small">Lavado, honey o natural: define cuerpo y notas.</span></div></div>
-				<div class="step"><i>☀️</i><div><strong>Secado</strong><br><span class="small">Hasta 10–12% humedad para estabilidad.</span></div></div>
-				<div class="step"><i>🔥</i><div><strong>Tostado</strong><br><span class="small">Resalta atributos; medio para equilibrio en métodos.</span></div></div>
-				<div class="step"><i>🌀</i><div><strong>Molienda</strong><br><span class="small">A medida del método; consistencia es clave.</span></div></div>
-				<div class="step"><i>☕</i><div><strong>Extracción</strong><br><span class="small">Proporción, tiempo, temperatura y turbulencia.</span></div></div>
-			</div>
-		</div>
-	</section>
+                <div class="span-4">
+                    <label for="asist-agua">Agua (ml)</label>
+                    <input id="asist-agua" type="number" readonly />
+                </div>
+                <div class="span-4">
+                    <label for="asist-cafe">Café (g)</label>
+                    <input id="asist-cafe" type="number" readonly />
+                </div>
+                <div class="span-4">
+                    <label for="asist-tiempo">Tiempo y molido</label>
+                    <input id="asist-tiempo" type="text" readonly />
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<section id="contacto" class="grid cards">
-		<div class="card span-8">
-			<h2>Contacto</h2>
-			<form id="form-contacto" action="https://formspree.io/f/REEMPLAZA_AQUI" method="POST">
-				<label for="nombre">Nombre</label>
-				<input id="nombre" name="nombre" required placeholder="Tu nombre" />
-				<label for="email">Email</label>
-				<input id="email" type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
-				<label for="mensaje">Mensaje</label>
-				<textarea id="mensaje" name="mensaje" rows="5" required placeholder="¿En qué podemos ayudarte?"></textarea>
-				<input type="hidden" name="_subject" value="Nuevo mensaje - Cajai Café" />
-				<button type="submit">Enviar</button>
-				<p class="small">Al enviar aceptas el uso de tus datos para responder tu consulta.</p>
-			</form>
-		</div>
-		<div class="card span-4">
-			<h3>También puedes</h3>
-			<ul>
-				<li><a href="mailto:hola@cajaicafe.me">Escribir a hola@cajaicafe.me</a></li>
-				<li><a href="#guia">Revisar la guía</a></li>
-				<li><a href="#calculadora">Usar la calculadora</a></li>
-			</ul>
-		</div>
-	</section>
+    <section id="recetas" class="container grid cards reveal">
+        <div class="card span-12">
+            <h2>Bebidas populares</h2>
+            <p class="lead">Relación rápida entre espresso, agua y leche.</p>
+        </div>
+        <div class="card span-4">
+            <h3>Americano</h3>
+            <p class="small">1 espresso + 120–180 ml de agua caliente. Primero el agua, luego el espresso.</p>
+        </div>
+        <div class="card span-4">
+            <h3>Latte</h3>
+            <p class="small">1 espresso + 180–240 ml de leche vaporizada. Textura sedosa, 55–60 °C.</p>
+        </div>
+        <div class="card span-4">
+            <h3>Capuccino</h3>
+            <p class="small">1 espresso + 120 ml de leche con microespuma. Cacao opcional encima.</p>
+        </div>
+    </section>
+
+    <section id="contacto" class="container grid cards reveal">
+        <div class="card span-8">
+            <h2>Contacto</h2>
+            <form id="form-contacto" action="https://formspree.io/f/REEMPLAZA_AQUI" method="POST" novalidate>
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" required placeholder="Tu nombre" />
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required placeholder="¿En qué podemos ayudarte?"></textarea>
+                <input type="hidden" name="_subject" value="Nuevo mensaje - Cajai Café" />
+                <button type="submit">Enviar</button>
+                <p class="small" id="status" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+        <div class="card span-4">
+            <h3>También puedes</h3>
+            <ul>
+                <li><a href="mailto:hola@cajaicafe.me">Escribir a hola@cajaicafe.me</a></li>
+                <li><a href="#elige">Usar el asistente</a></li>
+                <li><a href="#origenes">Leer nuestros orígenes</a></li>
+            </ul>
+        </div>
+    </section>
 </main>
 
-<footer>
-	<div class="nav" style="justify-content:space-between;">
-		<div class="small">© Cajai Café • Inspirado en Junín–Chanchamayo</div>
-		<div class="small"><a href="https://cajaicafe.me" rel="noopener">cajaicafe.me</a></div>
-	</div>
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="small">© Cajai Café • Inspirado en Junín–Chanchamayo</div>
+        <div class="small"><a href="https://cajaicafe.me" rel="noopener">cajaicafe.me</a></div>
+    </div>
 </footer>
 
-<script>
-(function(){
-	const metodo = document.getElementById('metodo');
-	const intensidad = document.getElementById('intensidad');
-	const unidad = document.getElementById('unidad');
-	const valor = document.getElementById('valor');
-	const ayudaValor = document.getElementById('ayudaValor');
-	const agua = document.getElementById('agua');
-	const cafe = document.getElementById('cafe');
-	const tiempo = document.getElementById('tiempo');
-	const molido = document.getElementById('molido');
+<noscript>
+    <div class="container" style="padding:12px;margin-top:12px;border:1px solid #e0e0e0;border-radius:8px">
+        Para una mejor experiencia activa JavaScript. Los paneles de guía se generan dinámicamente.
+    </div>
+</noscript>
 
-	const ratios = {
-		v60:{suave:17, media:15, fuerte:14, tiempo:'2:30–3:00 min', molido:'Medio-fino'},
-		prensa:{suave:16, media:15, fuerte:14, tiempo:'4:00 min', molido:'Grueso'},
-		moka:{suave:12, media:11, fuerte:10, tiempo:'2:00–3:00 min', molido:'Medio'},
-		espresso:{suave:2.2, media:2.0, fuerte:1.8, tiempo:'25–30 s (doble)', molido:'Fino'}
-	};
-
-	function calc(){
-		const m = metodo.value;
-		const i = intensidad.value;
-		const r = ratios[m][i];
-		const isTazas = unidad.value === 'tazas';
-		ayudaValor.textContent = isTazas ? 'Tazas (≈200 ml c/u)' : 'Gramos de café';
-		let coffee, water;
-
-		if(isTazas){
-			const cups = Math.max(1, Number(valor.value||0));
-			if(m==='espresso'){
-				coffee = cups * 18; // 18 g por doble
-				water = Math.round(coffee * r);
-			}else{
-				water = cups * 200; // ml
-				coffee = Math.round(water / r);
-			}
-		}else{
-			coffee = Math.max(1, Number(valor.value||0));
-			water = Math.round(coffee * r);
-		}
-
-		agua.value = water;
-		cafe.value = Math.round(coffee);
-		tiempo.value = ratios[m].tiempo;
-		molido.value = ratios[m].molido;
-	}
-
-	[metodo,intensidad,unidad,valor].forEach(el=>el.addEventListener('input', calc));
-	calc();
-
-	// Mejora UX: enviar Formspree sin recargar (opcional pero simple)
-	const form = document.getElementById('form-contacto');
-	form.addEventListener('submit', async (e)=>{
-		if(form.action.includes('REEMPLAZA_AQUI')) return; // si no configurado, envío normal o bloqueo
-		e.preventDefault();
-		const data = Object.fromEntries(new FormData(form).entries());
-		const res = await fetch(form.action, {method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form)});
-		if(res.ok){ alert('¡Gracias! Te responderemos pronto.'); form.reset(); }
-		else{ alert('No se pudo enviar. Intenta de nuevo o escribe a hola@cajaicafe.me'); }
-	});
-})();
-</script>
+<script src="./assets/js/app.js" defer></script>
 </body>
 </html>
