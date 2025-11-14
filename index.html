@@ -1,198 +1,1212 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cajai Café | Guía sencilla para preparar café en casa</title>
-    <meta name="description" content="Cajai Café: orígenes, guía para principiantes, paneles por cafetera o bebida, recetas y contacto. Inspirado en Junín–Chanchamayo, Perú." />
-    <meta name="theme-color" content="#2e5e2a" />
-    <link rel="preload" href="./assets/css/styles.css" as="style" />
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/cajaicafe_web.webp" type="image/png" sizes="16x16">
+    <title>Cajai Café | Café de Junín-Chanchamayo</title>
+    <meta name="description" content="Descubre el auténtico café de Junín-Chanchamayo. Aprende a preparar café de especialidad con nuestras guías paso a paso.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --verde-oscuro: #2e5e2a;
+            --verde: #3e7a39;
+            --verde-claro: #a3c48d;
+            --cafe: #6f4e37;
+            --cafe-oscuro: #4b3326;
+            --cerezo: #8B1A1A;
+            --cerezo-claro: #C84B4B;
+            --crema: #f5f1e9;
+            --humo: #f2f5f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f1e9 0%, #e8f5e9 100%);
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(62, 122, 57, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--verde-oscuro) !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--verde), var(--cafe));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .nav-link {
+            color: var(--cafe) !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--verde);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 50vh;
+            background-image: url('assets/images/merced.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+    z-index: 1; /* Se pone detrás del contenido (que tiene z-index: 2) */
+}
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn-hero {
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-hero:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--cerezo), var(--cerezo-claro));
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline-custom:hover {
+            background: white;
+            color: var(--verde-oscuro);
+        }
+
+        /* Coffee Cards */
+        .cafetera-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .cafetera-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--verde), var(--cafe), var(--cerezo));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .cafetera-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .cafetera-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: var(--verde);
+        }
+
+        .cafetera-card.active {
+            border-color: var(--cerezo);
+            box-shadow: 0 15px 50px rgba(139, 26, 26, 0.2);
+            transform: scale(1.02);
+        }
+
+        .cafetera-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--verde-claro), var(--verde));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(62, 122, 57, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cafetera-card:hover .cafetera-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .badge-custom {
+            background: linear-gradient(135deg, var(--cerezo), var(--cerezo-claro));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Detail Panel */
+        .detail-panel {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            border-left: 5px solid var(--cerezo);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--verde);
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--verde), var(--verde-oscuro));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Asistente */
+        .asistente-box {
+            background: linear-gradient(135deg, var(--verde-oscuro), var(--cafe));
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control, .form-select {
+            border-radius: 12px;
+            border: 2px solid #dee2e6;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--verde);
+            box-shadow: 0 0 0 0.2rem rgba(62, 122, 57, 0.25);
+        }
+
+        .result-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Section Styling */
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--cafe-oscuro);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--verde), var(--cerezo));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: #6c757d;
+            font-size: 1.2rem;
+            max-width: 700px;
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--cafe-oscuro), var(--verde-oscuro));
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer a {
+            color: var(--verde-claro);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .nav-tabs-custom {
+            border: none;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .nav-tabs-custom .nav-link {
+            border: 2px solid transparent;
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            background: white;
+            color: var(--cafe);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs-custom .nav-link:hover {
+            background: var(--humo);
+            transform: translateY(-2px);
+        }
+
+        .nav-tabs-custom .nav-link.active {
+            background: linear-gradient(135deg, var(--verde), var(--verde-oscuro));
+            color: white;
+            border-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cafetera-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .detail-panel {
+                padding: 1.5rem;
+            }
+
+            .asistente-box {
+                padding: 1.5rem;
+            }
+        }
+        @media (min-width: 992px){
+            .hero-section .col-md-5{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+        }
+        @media (min-width: 992px){
+            .hero-section{
+                padding-top: 150px;
+            }
+        }
+        @media (max-width: 922px){
+            .hero-section i.bi-cup-hot{
+                font-size: 12rem !important;
+            }
+        }
+        @media (min-width: 992px) {
+    .hero-section .row {
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-section .col-md-5 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+        .coffee-loader {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+       
+        .hero-section{
+            padding-top: 150px;
+            padding-bottom: 120px;
+        }
+    </style>
 </head>
 <body>
-<header class="site-header">
-    <div class="nav container">
-        <a class="brand" href="#inicio" aria-label="Cajai Café">
-            <span class="brand-badge" aria-hidden="true"></span>
-            <span class="brand-name">Cajai Café</span>
-        </a>
-        <nav class="topnav" id="topnav" aria-label="Navegación principal">
-            <a href="#origenes">Orígenes</a>
-            <a href="#elige">Elige tu método</a>
-            <a href="#recetas">Bebidas</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
-        <button id="menuBtn" class="icon-btn" aria-label="Abrir menú" title="Menú">☰</button>
-    </div>
-</header>
 
-<main id="inicio">
-    <section class="hero container reveal">
-        <div class="hero-inner">
-            <div>
-                <span class="tag">Junín – Chanchamayo • Perú</span>
-                <h1>Café con alma verde, origen andino</h1>
-                <p class="lead">Aprende a preparar café fácil, sin experiencia previa. Elige tu cafetera o la bebida que quieres tomar y te guiamos paso a paso.</p>
-                <div class="cta">
-                    <a class="btn primary" href="#elige">Empezar ahora</a>
-                    <a class="btn ghost" href="#origenes">Conoce nuestros orígenes</a>
-                </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <img style="width: 250px; height: 100px" src="assets/images/cajaicafe_logo.png" alt="logo_cajaicafe">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#origenes">Orígenes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#guia">Guía Práctica</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#asistente">Asistente</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
             </div>
-            <div class="hero-figure" aria-hidden="true">
-                <div class="montanas"></div>
-                <div class="cafe-vaso"></div>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 hero-content" data-aos="fade-up">
+                    <span class="hero-badge" style="color: #1f4e1b;">🌿 JUNÍN - CHANCHAMAYO, PERÚ</span>
+                    <h1 class="hero-title"><b>Una historia de sabor en cada taza</h1>
+                    <p class="hero-subtitle">
+                        Descubre el auténtico sabor del café de altura. Aprende a preparar café de especialidad 
+                        en casa con nuestras guías paso a paso, sin experiencia previa.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-hero btn-primary-custom" onclick="document.getElementById('guia').scrollIntoView({behavior: 'smooth'})">
+                            <i class="bi bi-play-circle me-2"></i>Comenzar ahora
+                        </button>
+                        <button class="btn btn-hero btn-outline-custom" onclick="document.getElementById('origenes').scrollIntoView({behavior: 'smooth'})">
+                            Conoce nuestra historia
+                        </button>
+                        
+                    </div>
+                </div>
+                
             </div>
         </div>
     </section>
 
-    <section id="origenes" class="container grid cards reveal">
-        <div class="card span-7">
-            <h2>Orígenes de Cajai Café</h2>
-            <p class="muted">Ejemplo editable — reemplaza por tu historia.</p>
-            <p>
-                Cajai Café nace en el valle de <strong>Chanchamayo (Junín, Perú)</strong>, donde la selva alta abraza los cafetales. Crecimos entre productores que cuidan el suelo, la sombra y la cosecha selectiva de cerezas maduras.
-            </p>
-            <p>
-                Trabajamos con variedades <em>Caturra, Typica y Bourbon</em> en altitudes entre <strong>800–1,600 m.s.n.m.</strong>. Buscamos un perfil <strong>dulce y cítrico con toques florales</strong>. Tostamos en punto medio para resaltar equilibrio y dulzor natural.
-            </p>
-            <p>
-                Nuestro propósito es acercar el café de especialidad a todos: <strong>guías claras, pasos simples y resultados constantes</strong>. De la planta a tu taza, con respeto por el origen.
-            </p>
+    <!-- Orígenes -->
+    <section id="origenes" class="py-5" style="background: white;">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Nuestros Orígenes</h2>
+                <p class="section-subtitle mx-auto mt-3">
+                    Nacidos en el corazón verde de Junín-Chanchamayo
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <div class="detail-panel">
+                        <h3 class="h2 mb-4" style="color: var(--cafe-oscuro);">
+                            <i class="bi bi-geo-alt-fill text-danger me-2"></i>
+                            Del Valle a Tu Taza
+                        </h3>
+                        <p class="lead mb-4">
+                            Cajai Café nace en el valle de <strong>Chanchamayo (Junín, Perú)</strong>, 
+                            donde la selva alta abraza los cafetales y cada grano cuenta una historia.
+                        </p>
+                        <p>
+                            Crecimos entre productores que cuidan el suelo, la sombra y la cosecha selectiva 
+                            de cerezas maduras. Nuestra variedad: <em>Castillo</em> 
+                            con una altitud de <strong>1350 m.s.n.m.</strong>
+                        </p>
+                        <p>
+                            Buscamos un perfil <strong>dulce y cítrico con toques florales</strong>. 
+                            Tostamos en punto medio para resaltar equilibrio y dulzor natural.
+                        </p>
+                        <div class="alert alert-success border-0 mt-4" style="background: linear-gradient(135deg, #d4edda, #c3e6cb);">
+                            <i class="bi bi-check-circle-fill me-2"></i>
+                            Nuestro propósito es acercar el café de especialidad a todos: guías claras, 
+                            pasos simples y resultados constantes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="detail-panel h-100">
+                        <h4 class="mb-4"><i class="bi bi-cup-straw me-2"></i>Que esperar en taza</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                Dulzor a panela
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                Cítricos brillantes
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                Florales ligeros
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                Cuerpo medio, final limpio
+                            </li>
+                        </ul>
+                        <hr class="my-4">
+                        <div class="mb-3">
+                            <strong>Altitud:</strong> 1,350 m.s.n.m.
+                        </div>
+                        <div class="mb-3">
+                            <strong>Proceso:</strong> Lavado / Honey
+                        </div>
+                        <div>
+                            <strong>Tueste:</strong> Medio
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card span-5">
-            <h3>Qué esperar en taza</h3>
-            <ul class="bullets">
-                <li>Dulzor a panela, cítricos brillantes, florales ligeros.</li>
-                <li>Cuerpo medio con final limpio.</li>
-                <li>Tueste medio recomendado para métodos de filtro.</li>
+    </section>
+
+    <!-- Guía Práctica -->
+    <section id="guia" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Guía Práctica</h2>
+                <p class="section-subtitle mx-auto mt-3">
+                    Elige tu método de preparación y aprende paso a paso
+                </p>
+            </div>
+
+            <!-- Tabs -->
+            <ul class="nav nav-tabs nav-tabs-custom" role="tablist" data-aos="fade-up">
+                <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#cafeteras">
+                        <i class="bi bi-funnel me-2"></i>Por Cafetera
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bebidas">
+                        <i class="bi bi-cup-hot me-2"></i>Por Bebida
+                    </button>
+                </li>
             </ul>
-            <div class="kpi">
-                <div>Altitud: 800–1,600 m</div>
-                <div>Proceso: lavado / honey</div>
-                <div>Tueste: medio</div>
-            </div>
-        </div>
-    </section>
 
-    <section id="elige" class="container reveal">
-        <h2>Elige tu método o bebida</h2>
-        <p class="lead">Selecciona lo que tienes o quieres tomar. Verás pasos, proporciones y tiempos explicados de forma sencilla.</p>
-
-        <!-- Conmutador de grupo: Cafetera / Bebida -->
-        <div class="segmented" role="tablist" aria-label="Selector de guía">
-            <button class="seg-btn active" role="tab" aria-selected="true" aria-controls="panel-metodos" id="tab-metodos">Cafetera</button>
-            <button class="seg-btn" role="tab" aria-selected="false" aria-controls="panel-bebidas" id="tab-bebidas">Bebida</button>
-        </div>
-
-        <!-- Panel: Métodos (cafeteras) -->
-        <section id="panel-metodos" class="panel show" role="tabpanel" aria-labelledby="tab-metodos">
-            <div id="cards-metodos" class="grid cards"></div>
-            <article id="detalle-metodo" class="card mt reveal-sm" aria-live="polite"></article>
-        </section>
-
-        <!-- Panel: Bebidas -->
-        <section id="panel-bebidas" class="panel" role="tabpanel" aria-labelledby="tab-bebidas" hidden>
-            <div id="cards-bebidas" class="grid cards"></div>
-            <article id="detalle-bebida" class="card mt reveal-sm" aria-live="polite"></article>
-        </section>
-
-        <!-- Asistente rápido para principiantes -->
-        <div class="card mt">
-            <h3>Asistente para principiantes</h3>
-            <p class="muted">Indica cuántas tazas quieres (aprox. 200 ml cada una). Te damos café, agua, tiempo y molido sugerido.</p>
-            <div class="grid" style="grid-template-columns:repeat(12,1fr);gap:12px">
-                <div class="span-4">
-                    <label for="asist-metodo">Cafetera</label>
-                    <select id="asist-metodo"></select>
-                </div>
-                <div class="span-4">
-                    <label for="asist-intensidad">Intensidad</label>
-                    <select id="asist-intensidad">
-                        <option value="suave">Suave</option>
-                        <option value="media" selected>Media</option>
-                        <option value="fuerte">Fuerte</option>
-                    </select>
-                </div>
-                <div class="span-4">
-                    <label for="asist-tazas">Tazas</label>
-                    <input id="asist-tazas" type="number" min="1" step="1" value="2" />
-                    <div class="help">1 taza ≈ 200 ml</div>
+            <div class="tab-content">
+                <!-- Tab Cafeteras -->
+                <div class="tab-pane fade show active" id="cafeteras">
+                    <div class="row g-4 mb-4" id="cafeterasGrid"></div>
+                    <div id="detalleCafetera" style="display:none;"></div>
                 </div>
 
-                <div class="span-4">
-                    <label for="asist-agua">Agua (ml)</label>
-                    <input id="asist-agua" type="number" readonly />
-                </div>
-                <div class="span-4">
-                    <label for="asist-cafe">Café (g)</label>
-                    <input id="asist-cafe" type="number" readonly />
-                </div>
-                <div class="span-4">
-                    <label for="asist-tiempo">Tiempo y molido</label>
-                    <input id="asist-tiempo" type="text" readonly />
+                <!-- Tab Bebidas -->
+                <div class="tab-pane fade" id="bebidas">
+                    <div class="row g-4 mb-4" id="bebidasGrid"></div>
+                    <div id="detalleBebida" style="display:none;"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="recetas" class="container grid cards reveal">
-        <div class="card span-12">
-            <h2>Bebidas populares</h2>
-            <p class="lead">Relación rápida entre espresso, agua y leche.</p>
-        </div>
-        <div class="card span-4">
-            <h3>Americano</h3>
-            <p class="small">1 espresso + 120–180 ml de agua caliente. Primero el agua, luego el espresso.</p>
-        </div>
-        <div class="card span-4">
-            <h3>Latte</h3>
-            <p class="small">1 espresso + 180–240 ml de leche vaporizada. Textura sedosa, 55–60 °C.</p>
-        </div>
-        <div class="card span-4">
-            <h3>Capuccino</h3>
-            <p class="small">1 espresso + 120 ml de leche con microespuma. Cacao opcional encima.</p>
+    <!-- Asistente -->
+    <section id="asistente" class="py-5" style="background: white;">
+        <div class="container py-5">
+            <div class="asistente-box" data-aos="zoom-in">
+                <div class="text-center mb-4">
+                    <h2 class="text-white mb-3">
+                        <i class="bi bi-calculator me-2"></i>
+                        Asistente para Principiantes
+                    </h2>
+                    <p class="text-white opacity-75">
+                        Calcula las proporciones perfectas según tu método y preferencias
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <label class="form-label text-white">Tipo de Cafetera</label>
+                        <select class="form-select" id="asistMetodo">
+                            <option value="v60">V60 / Filtro</option>
+                            <option value="prensa">Prensa Francesa</option>
+                            <option value="moka">Moka Italiana</option>
+                            <option value="espresso">Espresso</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label text-white">Intensidad</label>
+                        <select class="form-select" id="asistIntensidad">
+                            <option value="suave">Suave</option>
+                            <option value="media" selected>Media</option>
+                            <option value="fuerte">Fuerte</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label text-white">Número de Tazas</label>
+                        <input type="number" class="form-control" id="asistTazas" value="2" min="1" max="10">
+                        <small class="text-white opacity-75">1 taza ≈ 200 ml</small>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-3">
+                    <div class="col-md-4">
+                        <div class="result-box">
+                            <i class="bi bi-droplet-fill" style="font-size: 2rem;"></i>
+                            <span class="result-value" id="resultAgua">400</span>
+                            <small>ml de agua</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="result-box">
+                            <i class="bi bi-cup-fill" style="font-size: 2rem;"></i>
+                            <span class="result-value" id="resultCafe">27</span>
+                            <small>g de café</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="result-box">
+                            <i class="bi bi-clock-fill" style="font-size: 2rem;"></i>
+                            <div class="result-value" style="font-size: 1.2rem;" id="resultTiempo">2:30-3:00</div>
+                            <small id="resultMolido">Medio-fino</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="contacto" class="container grid cards reveal">
-        <div class="card span-8">
-            <h2>Contacto</h2>
-            <form id="form-contacto" action="https://formspree.io/f/xkgppwrk" method="POST" novalidate>
-                <label for="nombre">Nombre</label>
-                <input id="nombre" name="nombre" required placeholder="Tu nombre" />
-                <label for="email">Email</label>
-                <input id="email" type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required placeholder="¿En qué podemos ayudarte?"></textarea>
-                <input type="hidden" name="_subject" value="Nuevo mensaje - Cajai Café" />
-                <button type="submit">Enviar</button>
-                <p class="small" id="status" role="status" aria-live="polite"></p>
-            </form>
-        </div>
-        <div class="card span-4">
-            <h3>También puedes</h3>
-            <ul>
-                <li>Escribir a <a href="mailto:cajaicafejunin@gmail.com">cajaicafejunin@gmail.com</a></li>
-                <li><a href="#elige">Usar el asistente</a></li>
-                <li><a href="#origenes">Leer nuestros orígenes</a></li>
-            </ul>
+    <!-- Contacto -->
+    <section id="contacto" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Contáctanos</h2>
+                <p class="section-subtitle mx-auto mt-3">
+                    ¿Tienes preguntas? Estamos aquí para ayudarte
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <div class="detail-panel">
+                        <form id="contactForm" action="https://formspree.io/f/xkgppwrk" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Mensaje</label>
+                                <textarea class="form-control" name="mensaje" rows="5" required></textarea>
+                            </div>
+                            <input type="hidden" name="_subject" value="Nuevo mensaje - Cajai Café">
+                            <button type="submit" class="btn btn-primary-custom btn-hero">
+                                <i class="bi bi-send me-2"></i>Enviar Mensaje
+                            </button>
+                            <div id="formStatus" class="mt-3"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="detail-panel h-100">
+                        <h4 class="mb-4"><i class="bi bi-envelope-heart me-2"></i>Otras formas de contacto</h4>
+                        <div class="mb-4">
+                            <i class="bi bi-envelope-fill text-danger me-2"></i>
+                            <a href="mailto:cajaicafejunin@gmail.com">cajaicafejunin@gmail.com</a>
+                        </div>
+                        <div class="mb-4">
+                            <i class="bi bi-globe text-success me-2"></i>
+                            <a href="https://cajaicafe.me" target="_blank">cajaicafe.me</a>
+                        </div>
+                        <div class="mb-4">
+                            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                            Junín - Chanchamayo, Perú
+                        </div>
+                        <hr class="my-4">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-</main>
 
-<footer class="site-footer">
-    <div class="container footer-inner">
-        <div class="small">© Cajai Café • Inspirado en Junín–Chanchamayo</div>
-        <div class="small"><a href="https://cajaicafe.me" rel="noopener">cajaicafe.me</a></div>
-    </div>
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="mb-3">
+                        <div class="brand-icon d-inline-flex me-2" style="width: 30px; height: 30px; font-size: 1rem;">☕</div>
+                        Cajai Café
+                    </h5>
+                    <p class="opacity-75">
+                        Café de altura desde Junín-Chanchamayo, Perú. 
+                        Llevando el sabor auténtico de los Andes a tu hogar.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#inicio">Inicio</a></li>
+                        <li class="mb-2"><a href="#origenes">Orígenes</a></li>
+                        <li class="mb-2"><a href="#guia">Guía Práctica</a></li>
+                        <li class="mb-2"><a href="#asistente">Asistente</a></li>
+                        <li class="mb-2"><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Síguenos</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white" style="font-size: 1.5rem;"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white" style="font-size: 1.5rem;"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white" style="font-size: 1.5rem;"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white" style="font-size: 1.5rem;"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <div class="text-center opacity-75">
+                <small>© 2025 Cajai Café. Todos los derechos reservados. | Hecho con ❤️ en Junín-Chanchamayo</small>
+            </div>
+        </div>
+    </footer>
 
-<noscript>
-    <div class="container" style="padding:12px;margin-top:12px;border:1px solid #e0e0e0;border-radius:8px">
-        Para una mejor experiencia activa JavaScript. Los paneles de guía se generan dinámicamente.
-    </div>
-</noscript>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
-<script src="./assets/js/app.js" defer></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Datos de métodos
+        const METODOS = {
+            v60: {
+                id: 'v60', nombre: 'V60 / Filtro', icon: '🌀', etiqueta: 'Filtrado',
+                ratios: {suave: 17, media: 15, fuerte: 14}, molido: 'Medio-fino', tiempo: '2:30–3:00 min',
+                pasos: [
+                    'Molido medio-fino (como sal fina).',
+                    'Enjuaga el filtro con agua caliente y desecha esa agua.',
+                    'Proporción base 1:15. Ej.: 20 g café → 300 ml agua.',
+                    'Vierte un poco para "florecer" 30–40 s, luego en espiral hasta completar.',
+                ],
+                tips: 'Ajusta primero la molienda para corregir tiempos y sabor.'
+            },
+            prensa: {
+                id: 'prensa', nombre: 'Prensa Francesa', icon: '🫙', etiqueta: 'Inmersión',
+                ratios: {suave: 16, media: 15, fuerte: 14}, molido: 'Grueso', tiempo: '4:00 min',
+                pasos: [
+                    'Molido grueso (sal kosher).',
+                    'Agrega café y agua caliente, remueve y coloca la tapa sin bajar.',
+                    'Infunde 4 minutos. Rompe costra y retira espuma.',
+                    'Presiona suave y sirve.',
+                ],
+                tips: 'Un molido demasiado fino resultará en café amargo y con sedimentos.'
+            },
+            moka: {
+                id: 'moka', nombre: 'Moka Italiana', icon: '☕', etiqueta: 'Presión',
+                ratios: {suave: 12, media: 11, fuerte: 10}, molido: 'Medio', tiempo: '2:00–3:00 min',
+                pasos: [
+                    'Llena la base con agua caliente hasta la válvula.',
+                    'Rellena el filtro sin compactar (molido medio).',
+                    'Fuego bajo. Retira al primer borboteo para evitar amargor.',
+                ],
+                tips: 'Usar agua precalentada reduce el tiempo en el fuego y evita sabores metálicos.'
+            },
+            espresso: {
+                id: 'espresso', nombre: 'Espresso', icon: '🎯', etiqueta: '9 bar',
+                ratios: {suave: 2.2, media: 2.0, fuerte: 1.8}, molido: 'Fino', tiempo: '25–30 s (doble)',
+                pasos: [
+                    'Usa 18 g en canasta doble como referencia.',
+                    'Distribuye, nivela y tampea firme y recto.',
+                    'Busca 36–40 g en 25–30 s (relación 1:2).',
+                ],
+                tips: 'La temperatura ideal del agua es 93°C. Precalienta la taza para mejores resultados.'
+            }
+        };
+
+        const BEBIDAS = {
+            americano: {
+                id: 'americano', nombre: 'Americano', icon: '💧',
+                desc: '1 espresso + 120–180 ml de agua caliente. Primero el agua, luego el espresso.',
+                pasos: [
+                    'Prepara 1 espresso doble (≈30–40 g).',
+                    'Calienta agua a 90–96 °C.',
+                    'Sirve el agua primero en la taza y añade el espresso encima.',
+                ],
+                dificultad: 'Fácil'
+            },
+            latte: {
+                id: 'latte', nombre: 'Latte', icon: '🥛',
+                desc: '1 espresso + 180–240 ml de leche vaporizada. Textura sedosa 55–60 °C.',
+                pasos: [
+                    'Prepara 1 espresso doble.',
+                    'Vaporiza leche hasta 55–60 °C con microespuma fina.',
+                    'Vierte centrado y constante para crear latte art.',
+                ],
+                dificultad: 'Media'
+            },
+            capuccino: {
+                id: 'capuccino', nombre: 'Capuccino', icon: '🫧',
+                desc: '1 espresso + 120 ml de leche con microespuma.',
+                pasos: [
+                    'Prepara 1 espresso doble.',
+                    'Vaporiza leche con algo más de aire (espuma consistente).',
+                    'Vierte en proporción 1:1:1 (espresso:leche:espuma aprox.).',
+                ],
+                dificultad: 'Media'
+            },
+            filtrado: {
+                id: 'filtrado', nombre: 'Café Filtrado', icon: '🫗',
+                desc: 'Cualquier método de filtro a 1:15 como base. Limpio y balanceado.',
+                pasos: [
+                    'Usa 20 g café por 300 ml de agua (ajusta a gusto).',
+                    'Molido medio-fino. Agua a 90–96 °C.',
+                    'Vierte en 2–3 etapas para extraer parejo.',
+                ],
+                dificultad: 'Fácil'
+            }
+        };
+
+        // Construir grid de cafeteras
+        function buildCafeterasGrid() {
+            const grid = document.getElementById('cafeterasGrid');
+            grid.innerHTML = '';
+            
+            Object.values(METODOS).forEach((metodo, index) => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-3';
+                col.setAttribute('data-aos', 'fade-up');
+                col.setAttribute('data-aos-delay', index * 100);
+                
+                col.innerHTML = `
+                    <div class="cafetera-card" data-id="${metodo.id}" data-tipo="cafetera">
+                        <div class="cafetera-icon">${metodo.icon}</div>
+                        <h4 class="text-center mb-2">${metodo.nombre}</h4>
+                        <div class="text-center">
+                            <span class="badge-custom">${metodo.etiqueta}</span>
+                        </div>
+                        <p class="text-muted text-center small mt-3 mb-0">
+                            ${metodo.tiempo} • ${metodo.molido}
+                        </p>
+                    </div>
+                `;
+                
+                grid.appendChild(col);
+            });
+        }
+
+        // Construir grid de bebidas
+        function buildBebidasGrid() {
+            const grid = document.getElementById('bebidasGrid');
+            grid.innerHTML = '';
+            
+            Object.values(BEBIDAS).forEach((bebida, index) => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-3';
+                col.setAttribute('data-aos', 'fade-up');
+                col.setAttribute('data-aos-delay', index * 100);
+                
+                col.innerHTML = `
+                    <div class="cafetera-card" data-id="${bebida.id}" data-tipo="bebida">
+                        <div class="cafetera-icon">${bebida.icon}</div>
+                        <h4 class="text-center mb-2">${bebida.nombre}</h4>
+                        <div class="text-center">
+                            <span class="badge-custom">${bebida.dificultad}</span>
+                        </div>
+                        <p class="text-muted text-center small mt-3 mb-0">
+                            ${bebida.desc.substring(0, 60)}...
+                        </p>
+                    </div>
+                `;
+                
+                grid.appendChild(col);
+            });
+        }
+
+        // Mostrar detalle de cafetera
+        function mostrarDetalleCafetera(id) {
+            const metodo = METODOS[id];
+            const detalle = document.getElementById('detalleCafetera');
+            
+            let pasosHTML = metodo.pasos.map((paso, i) => `
+                <div class="step-item d-flex align-items-start">
+                    <div class="step-number">${i + 1}</div>
+                    <div>
+                        <p class="mb-0">${paso}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            detalle.innerHTML = `
+                <div class="detail-panel">
+                    <h3 class="mb-3">
+                        <span style="font-size: 2rem; margin-right: 1rem;">${metodo.icon}</span>
+                        ${metodo.nombre}
+                        <span class="badge-custom ms-2">${metodo.etiqueta}</span>
+                    </h3>
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="text-center p-3" style="background: #f8f9fa; border-radius: 12px;">
+                                <i class="bi bi-speedometer2 text-success" style="font-size: 2rem;"></i>
+                                <div class="mt-2"><strong>Proporción media</strong></div>
+                                <div class="h4 mb-0">1:${metodo.ratios.media}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3" style="background: #f8f9fa; border-radius: 12px;">
+                                <i class="bi bi-clock text-primary" style="font-size: 2rem;"></i>
+                                <div class="mt-2"><strong>Tiempo</strong></div>
+                                <div class="h4 mb-0">${metodo.tiempo}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3" style="background: #f8f9fa; border-radius: 12px;">
+                                <i class="bi bi-gem text-warning" style="font-size: 2rem;"></i>
+                                <div class="mt-2"><strong>Molido</strong></div>
+                                <div class="h4 mb-0">${metodo.molido}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mb-3"><i class="bi bi-list-check me-2"></i>Pasos a seguir</h4>
+                    ${pasosHTML}
+                    <div class="alert alert-info border-0 mt-4" style="background: linear-gradient(135deg, #cfe2ff, #b6d4fe);">
+                        <i class="bi bi-lightbulb-fill me-2"></i>
+                        <strong>TIP:</strong> ${metodo.tips}
+                    </div>
+                </div>
+            `;
+            
+            detalle.style.display = 'block';
+            detalle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Mostrar detalle de bebida
+        function mostrarDetalleBebida(id) {
+            const bebida = BEBIDAS[id];
+            const detalle = document.getElementById('detalleBebida');
+            
+            let pasosHTML = bebida.pasos.map((paso, i) => `
+                <div class="step-item d-flex align-items-start">
+                    <div class="step-number">${i + 1}</div>
+                    <div>
+                        <p class="mb-0">${paso}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            detalle.innerHTML = `
+                <div class="detail-panel">
+                    <h3 class="mb-3">
+                        <span style="font-size: 2rem; margin-right: 1rem;">${bebida.icon}</span>
+                        ${bebida.nombre}
+                        <span class="badge-custom ms-2">${bebida.dificultad}</span>
+                    </h3>
+                    <p class="lead mb-4">${bebida.desc}</p>
+                    <h4 class="mb-3"><i class="bi bi-list-check me-2"></i>Preparación</h4>
+                    ${pasosHTML}
+                </div>
+            `;
+            
+            detalle.style.display = 'block';
+            detalle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Event delegation para clicks en cards
+        document.addEventListener('click', function(e) {
+            const card = e.target.closest('.cafetera-card');
+            if (!card) return;
+            
+            const tipo = card.dataset.tipo;
+            const id = card.dataset.id;
+            
+            // Remover active de todas las cards del mismo tipo
+            document.querySelectorAll(`.cafetera-card[data-tipo="${tipo}"]`).forEach(c => {
+                c.classList.remove('active');
+            });
+            
+            // Activar la card clickeada
+            card.classList.add('active');
+            
+            // Mostrar detalle
+            if (tipo === 'cafetera') {
+                mostrarDetalleCafetera(id);
+            } else if (tipo === 'bebida') {
+                mostrarDetalleBebida(id);
+            }
+        });
+
+        // Asistente - Calcular proporciones
+        function calcularProporciones() {
+            const metodoId = document.getElementById('asistMetodo').value;
+            const intensidad = document.getElementById('asistIntensidad').value;
+            const tazas = parseInt(document.getElementById('asistTazas').value) || 1;
+            
+            const metodo = METODOS[metodoId];
+            const ratio = metodo.ratios[intensidad];
+            
+            let agua, cafe;
+            
+            if (metodoId === 'espresso') {
+                cafe = tazas * 18; // 18g por taza de espresso doble
+                agua = Math.round(cafe * ratio);
+            } else {
+                agua = tazas * 200; // 200ml por taza
+                cafe = Math.round(agua / ratio);
+            }
+            
+            document.getElementById('resultAgua').textContent = agua;
+            document.getElementById('resultCafe').textContent = cafe;
+            document.getElementById('resultTiempo').textContent = metodo.tiempo;
+            document.getElementById('resultMolido').textContent = metodo.molido;
+        }
+
+        // Event listeners para el asistente
+        document.getElementById('asistMetodo').addEventListener('change', calcularProporciones);
+        document.getElementById('asistIntensidad').addEventListener('change', calcularProporciones);
+        document.getElementById('asistTazas').addEventListener('input', calcularProporciones);
+
+        // Form de contacto
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const status = document.getElementById('formStatus');
+            const form = e.target;
+            
+            status.innerHTML = '<div class="alert alert-info"><i class="bi bi-hourglass-split me-2"></i>Enviando mensaje...</div>';
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    status.innerHTML = '<div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i>¡Mensaje enviado! Te responderemos pronto.</div>';
+                    form.reset();
+                } else {
+                    status.innerHTML = '<div class="alert alert-warning"><i class="bi bi-exclamation-triangle-fill me-2"></i>Hubo un problema. Intenta escribirnos a cajaicafejunin@gmail.com</div>';
+                }
+            } catch (error) {
+                status.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill me-2"></i>Error de conexión. Por favor intenta más tarde.</div>';
+            }
+        });
+
+        // Inicializar
+        buildCafeterasGrid();
+        buildBebidasGrid();
+        calcularProporciones();
+        
+        // Mostrar primer método por defecto
+        setTimeout(() => {
+            const firstCard = document.querySelector('.cafetera-card[data-tipo="cafetera"]');
+            if (firstCard) {
+                firstCard.click();
+            }
+        }, 500);
+
+        // Smooth scroll para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Cerrar menú móvil si está abierto
+                    const navCollapse = document.querySelector('.navbar-collapse');
+                    if (navCollapse.classList.contains('show')) {
+                        bootstrap.Collapse.getInstance(navCollapse).hide();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
